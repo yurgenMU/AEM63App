@@ -1,0 +1,29 @@
+<head data-sly-use.clientLib="${'/libs/granite/sightly/templates/clientlib.html'}">
+
+    <!--/* for css+js */-->
+    <meta data-sly-call="${clientLib.all @ categories='rssLibs'}" data-sly-unwrap></meta>
+    <div data-sly-test="${wcmmode.edit && !properties.name}">
+        Please specify the name
+    </div>
+    <div data-sly-test="${wcmmode.edit && !properties.address}">
+        Please specify the url
+    </div>
+
+
+
+    <div data-sly-test="${properties.name}" data-sly-use.k="ru.com.aem.community.core.models.RSSModel" id="rssName" onclick="hide('result')">
+        <h3>${k.name}</h3>
+
+    </div>
+
+    <div data-sly-test="${properties.address}" data-sly-use.v="ru.com.aem.community.core.models.RSSModel" id="result">
+
+        <sly data-sly-use.tooltipTmpl="data.html"
+             data-sly-call="${tooltipTmpl.tooltip @ text=v.address}" data-sly-unwrap>
+        </sly>
+
+
+
+
+
+    </div>

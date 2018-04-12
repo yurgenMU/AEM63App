@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0"
+    jcr:primaryType="cq:Dialog"
+    title="Properties"
+    xtype="panel">
+    <items jcr:primaryType="cq:WidgetCollection">
+        <name
+            jcr:primaryType="cq:Widget"
+            fieldLabel="Name"
+            name="./name"
+            xtype="textfield"/>
+        <address
+                jcr:primaryType="cq:Widget"
+                fieldLabel="URL"
+                name="./address"
+                xtype="textarea"/>
+    </items>
+</jcr:root>
