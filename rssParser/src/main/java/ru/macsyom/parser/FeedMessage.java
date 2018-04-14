@@ -1,6 +1,5 @@
 package ru.macsyom.parser;
 
-import com.sun.syndication.feed.synd.SyndEntry;
 
 public class FeedMessage {
 
@@ -10,16 +9,7 @@ public class FeedMessage {
     private String author;
     private String guid;
     private String pubDate;
-    private SyndEntry entry;
 
-    public FeedMessage(SyndEntry entry) {
-        this.entry = entry;
-        this.title = entry.getTitle();
-        this.description = entry.getDescription().getValue();
-        this.link = entry.getLink();
-        this.author = entry.getAuthor();
-        this.pubDate = String.valueOf(entry.getPublishedDate());
-    }
 
     public String getTitle() {
         return title;
