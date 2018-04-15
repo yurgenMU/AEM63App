@@ -3,7 +3,7 @@
 <%@page import="ru.macsyom.models.RSSModel" %>
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
 
-<cq:includeClientLib categories="rssLibs" />
+<cq:includeClientLib categories="myLibs" />
 <html>
 
 
@@ -29,6 +29,7 @@
 <div class="result" id="${currentNode.identifier}">
     <%@include file="data.jsp" %>
     <h3>${model.name}</h3>
+    <div><img src='${properties.fileReference}' /></div>
 
 
 
