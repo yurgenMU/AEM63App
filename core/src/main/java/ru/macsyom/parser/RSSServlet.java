@@ -1,8 +1,6 @@
 package ru.macsyom.parser;
 
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.SerializationFeature;
 import org.apache.felix.scr.annotations.Reference;
 import org.apache.felix.scr.annotations.sling.SlingServlet;
 import org.apache.sling.api.SlingHttpServletRequest;
@@ -14,7 +12,7 @@ import ru.macsyom.models.RSSModel;
 import ru.macsyom.service.ParserService;
 
 import javax.servlet.ServletException;
-import java.io.*;
+import java.io.IOException;
 
 @SlingServlet(paths = "/bin/getRSSData", methods = "GET")
 public class RSSServlet extends SlingSafeMethodsServlet {

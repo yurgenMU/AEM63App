@@ -55,6 +55,7 @@
                 <inherited>true</inherited>
                 <configuration>
                     <instructions>
+                        <Import-Package>com.aem.community.core.models</Import-Package>
                         <Sling-Test-Regexp>.*Test</Sling-Test-Regexp>
                     </instructions>
                 </configuration>
@@ -63,6 +64,11 @@
     </build>
 
     <dependencies>
+        <dependency>
+            <groupId>AEM63App</groupId>
+            <artifactId>AEM63App.core</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
         <dependency>
             <groupId>org.osgi</groupId>
             <artifactId>osgi.core</artifactId>

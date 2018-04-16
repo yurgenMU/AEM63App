@@ -3,8 +3,8 @@ package ru.macsyom.parser;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
-import org.apache.felix.scr.annotations.Service;
 import org.apache.felix.scr.annotations.Component;
+import org.apache.felix.scr.annotations.Service;
 import ru.macsyom.service.ParserService;
 
 
