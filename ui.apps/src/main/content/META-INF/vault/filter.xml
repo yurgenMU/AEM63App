@@ -3,5 +3,6 @@
     <filter root="/apps/AEM63App"/>
     <filter root="/apps/rssAEM"/>
     <filter root="/apps/sling" />
+    <filter root="/apps/applicationMap" />
     <filter root="/etc/designs/AEM63App"/>
 </workspaceFilter>

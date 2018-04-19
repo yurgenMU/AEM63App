@@ -1,6 +1,9 @@
 package ru.macsyom.parser;
 
 
+import java.util.Comparator;
+import java.util.Objects;
+
 public class FeedMessage {
 
     private String title;
@@ -60,9 +63,28 @@ public class FeedMessage {
     }
 
     @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        FeedMessage that = (FeedMessage) o;
+        return Objects.equals(title, that.title) &&
+                Objects.equals(link, that.link) &&
+                Objects.equals(author, that.author) &&
+                Objects.equals(guid, that.guid) &&
+                Objects.equals(pubDate, that.pubDate);
+    }
+
+    @Override
+    public int hashCode() {
+
+        return Objects.hash(title, link, author, guid, pubDate);
+    }
+
+    @Override
     public String toString() {
         return "FeedMessage{" +
                 "title='" + title + '\'' +
+
                 ", description='" + description + '\'' +
                 ", link='" + link + '\'' +
                 ", author='" + author + '\'' +
@@ -70,4 +92,6 @@ public class FeedMessage {
                 ", pubDate='" + pubDate + '\'' +
                 '}';
     }
+
+
 }

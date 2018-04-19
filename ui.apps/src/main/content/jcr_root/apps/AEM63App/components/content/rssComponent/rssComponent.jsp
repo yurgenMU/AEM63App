@@ -1,10 +1,12 @@
-<%@include file="/libs/foundation/global.jsp"%>
+<%@include file="/apps/applicationMap/globalLib/global.jsp"%>
 <%--<%@page session="false" %>--%>
-<%@page import="ru.macsyom.models.RSSModel" %>
+<%--<%@page import="ru.macsyom.models.RSSModel" %>--%>
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
 
+<%--<%@taglib prefix="sling" uri="http://sling.apache.org/taglibs/sling" %>--%>
 <cq:includeClientLib categories="myLibs" />
-<html>
+
+
 
 
 <c:choose>
@@ -25,8 +27,10 @@
 </c:choose>
 
 
-<c:set var="model" value="<%= resource.adaptTo(RSSModel.class)%>"/>
-<div class="result" id="${currentNode.identifier}">
+<sling:adaptTo adaptable="${resource}" adaptTo="ru.macsyom.models.RSSModel" var="model"/>
+
+<%--<c:set var="model" value="<%= resource.adaptTo(RSSModel.class)%>"/>--%>
+<div class="result" id="${currentNode.path}">
     <%@include file="data.jsp" %>
     <h3>${model.name}</h3>
     <div><img src='${properties.fileReference}' /></div>
@@ -34,4 +38,3 @@
 
 
 </div>
-</html>

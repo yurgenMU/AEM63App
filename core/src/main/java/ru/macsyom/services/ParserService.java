@@ -1,4 +1,4 @@
-package ru.macsyom.service;
+package ru.macsyom.services;
 
 public interface ParserService {
 

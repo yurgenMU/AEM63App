@@ -1,4 +1,4 @@
-package ru.macsyom.parser;
+package ru.macsyom.servlets;
 
 
 import org.apache.felix.scr.annotations.Reference;
@@ -9,7 +9,7 @@ import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.api.servlets.SlingSafeMethodsServlet;
 import ru.macsyom.models.RSSModel;
-import ru.macsyom.service.ParserService;
+import ru.macsyom.services.ParserService;
 
 import javax.servlet.ServletException;
 import java.io.IOException;
@@ -20,9 +20,11 @@ public class RSSServlet extends SlingSafeMethodsServlet {
     @Reference
     private ParserService parserService;
 
+
+
     private String address;
 
-    protected void doGet(SlingHttpServletRequest req, SlingHttpServletResponse resp) throws ServletException, IOException {
+    public void doGet(SlingHttpServletRequest req, SlingHttpServletResponse resp) throws ServletException, IOException {
         String address = req.getParameter("address");
         ResourceResolver resourceResolver = req.getResourceResolver();
         Resource resource = resourceResolver.getResource(address);

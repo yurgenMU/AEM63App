@@ -1,9 +1,9 @@
-<%@include file="/libs/foundation/global.jsp" %>
+<%@include file="/apps/applicationMap/globalLib/global.jsp" %>
 
 
 <script>
     $(document).ready(function () {
-        var param = "${currentNode.identifier}";
+        var param = "${currentNode.path}";
         var div = document.getElementById(param);
         var splitParam = param.split(/[\s/]+/);
         var postf = splitParam[splitParam.length - 1]
@@ -18,7 +18,7 @@
                     var link = json[i].link;
                     var author = json[i].author;
                     var guid = json[i].guid;
-                    var pubDate = json[i].pubDate
+                    var pubDate = json[i].pubDate;
                     $(div).append("<button type=\"button\" class=\"btn btn-info btn-sm\" id=\""+postf+i+"\" " +
                         "data-toggle=\"collapse\" data-target=\"#demo" + postf + i + "\">+</button>" +
                         "<a href=\"" + link + "\">" +
@@ -27,7 +27,7 @@
                         "  </div>");
                     $("#" + postf + i).click(function(){
                         $(this).text(function(i,old){
-                            return old=='+' ?  '-' : '+';
+                            return old==='+' ?  '-' : '+';
                         });
                     });
 
