@@ -20,6 +20,9 @@ public class Marker {
     @Inject
     private String text;
 
+    private String path;
+
+
     public String getLatitude() {
         return latitude;
     }
@@ -59,5 +62,14 @@ public class Marker {
     public int hashCode() {
 
         return Objects.hash(latitude, longitude, text);
+    }
+
+
+    public String getPath() {
+        return path;
+    }
+
+    public void setPath(String path) {
+        this.path = path;
     }
 }

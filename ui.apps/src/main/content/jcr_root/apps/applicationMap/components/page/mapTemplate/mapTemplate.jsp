@@ -6,8 +6,9 @@
 <head>
     <style>
         #map {
+            margin-left:auto; margin-right:0;
             height: 400px;
-            width: 80%;
+            width: 40%;
             padding: 30px;
         }
     </style>
@@ -15,7 +16,7 @@
 <body>
 <%--<c:set var="${properties.name}" value="${2000*2}"/>--%>
 
-<sling:adaptTo adaptable="${resource}" adaptTo="ru.macsyom.models.RSSModel" var="model"/>
+<sling:adaptTo adaptable="${resource}" adaptTo="ru.macsyom.models.Marker" var="model"/>
 <%--<c:set target="${model}" property="name" value="value"/>--%>
 <h3>My Google Maps Demo</h3>
 <div id="map"></div>
@@ -83,9 +84,7 @@
                 var json = JSON.parse(str);
                 for (var i in json) {
                     var position = {lat: parseFloat(json[i].latitude), lng: parseFloat(json[i].longitude)};
-                    console.log(position);
-
-                    paintMarker(position, map);
+                    paintMarker(position, map, json[i].path);
 
                 }
 
@@ -95,19 +94,67 @@
     }
 
 
-    function paintMarker(position, map) {
+    var contentString = '<div id="content">' +
+        '<div id="siteNotice">' +
+        '</div>' +
+        '<h1 id="firstHeading" class="firstHeading">Uluru</h1>' +
+        '<div id="bodyContent">' +
+        '<p><b>Uluru</b>, also referred to as <b>Ayers Rock</b>, is a large ' +
+        'sandstone rock formation in the southern part of the ' +
+        'Northern Territory, central Australia. It lies 335&#160;km (208&#160;mi) ' +
+        'south west of the nearest large town, Alice Springs; 450&#160;km ' +
+        '(280&#160;mi) by road. Kata Tjuta and Uluru are the two major ' +
+        'features of the Uluru - Kata Tjuta National Park. Uluru is ' +
+        'sacred to the Pitjantjatjara and Yankunytjatjara, the ' +
+        'Aboriginal people of the area. It has many springs, waterholes, ' +
+        'rock caves and ancient paintings. Uluru is listed as a World ' +
+        'Heritage Site.</p>' +
+        '<p>Attribution: Uluru, <a href="https://en.wikipedia.org/w/index.php?title=Uluru&oldid=297882194">' +
+        'https://en.wikipedia.org/w/index.php?title=Uluru</a> ' +
+        '(last visited June 22, 2009).</p>' +
+        '</div>' +
+        '</div>';
+
+    var infowindow;
+
+    function paintMarker(position, map, id) {
         var marker = new google.maps.Marker({
             position: position,
+            draggable: true,
+            animation: google.maps.Animation.DROP,
             map: map
         });
+        infowindow = new google.maps.InfoWindow({
+            content: '<div contentEditable="true" id="asdasd">changeme...</div>'
+        });
+        marker.setValues({id: id});
         google.maps.event.addListener(marker, "dblclick", function (event) {
             var lat = marker.getPosition().lat();
             var lng = marker.getPosition().lng();
-            deleteMarker(lat,lng, map);
-            console.log("HUI");
+            deleteMarker(lat, lng, map);
             marker.setMap(null);
         });
+        google.maps.event.addListener(marker, "dragend", function (event) {
+            var lat = marker.getPosition().lat();
+            var lng = marker.getPosition().lng();
+            // marker.setPosition(new google.maps.LatLng(lat, lng));
+            editMarker(lat, lng, map, marker.get("id"));
+        });
+        google.maps.event.addListener(marker, 'click', function () {
+            infowindow.open(map, marker);
+        });
+
         return marker;
+    }
+
+
+    function toggleBounce() {
+        if (marker.getAnimation() !== null) {
+            marker.setAnimation(null);
+        } else {
+            marker.setAnimation(google.maps.Animation.BOUNCE);
+        }
+
     }
 
 
@@ -122,16 +169,35 @@
             },
 
             success: function (str) {
-                // var json = JSON.parse(str);
-                // for (var i in json) {
-                //     position
-                // }
+                var json = JSON.parse(str);
+                marker.setValues({id: json.id});
             }
         });
         paintMarker(position, map)
 
 
     }
+
+    function editMarker(lat, lng, map, id) {
+        $.ajax({
+            type: "POST",
+            url: "/bin/editMarkerServlet",
+            data: {
+                lat: lat,
+                lng: lng,
+                path: id,
+            },
+
+            success: function (str) {
+                var json = JSON.parse(str);
+                // marker.setValues({id: json.id});
+            }
+        });
+        // paintMarker(position, map)
+
+
+    }
+
 
     function deleteMarker(lat, lng, map) {
         console.log(lat);

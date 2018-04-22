@@ -11,8 +11,8 @@ import ru.macsyom.services.MarkerDAO;
 import javax.servlet.ServletException;
 import java.io.IOException;
 
-@SlingServlet(paths = "/bin/markerServlet", methods = {"POST","DELETE"})
-public class MarkerServlet extends SlingAllMethodsServlet {
+@SlingServlet(paths = "/bin/editMarkerServlet", methods = "POST")
+public class EditMarketServlet extends SlingAllMethodsServlet{
 
     @Reference
     private MarkerDAO markerService;
@@ -24,19 +24,9 @@ public class MarkerServlet extends SlingAllMethodsServlet {
         String latitude = req.getParameter("lat");
         String longitude = req.getParameter("lng");
         String description = req.getParameter("descr");
-        String parentPath = req.getParameter("parent");
+        String path = req.getParameter("path");
         resp.getWriter()
                 .write(serializer.serializeMarker(markerService
-                        .addMarker(latitude,longitude,description,parentPath)));
-    }
-
-
-
-    public void doDelete(SlingHttpServletRequest req, SlingHttpServletResponse resp) throws ServletException, IOException {
-        String latitude = req.getParameter("lat");
-        String longitude = req.getParameter("lng");
-        String parentPath = req.getParameter("parent");
-        markerService.removeMarker(latitude,longitude,parentPath);
-        resp.getWriter().write(serializer.seriaizeCollection(markerService.getAll(parentPath)));
+                        .editMarker(latitude,longitude,description,path)));
     }
 }
