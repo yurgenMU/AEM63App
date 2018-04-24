@@ -1,12 +1,12 @@
 package ru.macsyom.services;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import ru.macsyom.models.Marker;
+import ru.macsyom.entity.Event;
 
 import java.util.Set;
 
 public interface JSONSerializer {
-    String serializeMarker(Marker marker) throws JsonProcessingException;
-    String seriaizeCollection(Set<Marker> markers) throws JsonProcessingException;
+    String serializeEvent(Event event) throws JsonProcessingException;
+    String seriaizeCollection(Set<Event> events) throws JsonProcessingException;
 
 }

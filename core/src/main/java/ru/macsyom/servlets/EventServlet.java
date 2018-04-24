@@ -6,16 +6,16 @@ import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.SlingHttpServletResponse;
 import org.apache.sling.api.servlets.SlingAllMethodsServlet;
 import ru.macsyom.services.JSONSerializer;
-import ru.macsyom.services.MarkerDAO;
+import ru.macsyom.services.EventDAO;
 
 import javax.servlet.ServletException;
 import java.io.IOException;
 
-@SlingServlet(paths = "/bin/markerServlet", methods = {"POST","DELETE"})
-public class MarkerServlet extends SlingAllMethodsServlet {
+@SlingServlet(paths = "/bin/eventServlet", methods = {"POST", "DELETE"})
+public class EventServlet extends SlingAllMethodsServlet {
 
     @Reference
-    private MarkerDAO markerService;
+    private EventDAO eventDAO;
 
     @Reference
     private JSONSerializer serializer;
@@ -24,19 +24,19 @@ public class MarkerServlet extends SlingAllMethodsServlet {
         String latitude = req.getParameter("lat");
         String longitude = req.getParameter("lng");
         String description = req.getParameter("descr");
+        String text = req.getParameter("text");
         String parentPath = req.getParameter("parent");
         resp.getWriter()
-                .write(serializer.serializeMarker(markerService
-                        .addMarker(latitude,longitude,description,parentPath)));
+                .write(serializer.serializeEvent(eventDAO
+                        .addEvent(latitude, longitude, description, text, parentPath)));
     }
-
 
 
     public void doDelete(SlingHttpServletRequest req, SlingHttpServletResponse resp) throws ServletException, IOException {
         String latitude = req.getParameter("lat");
         String longitude = req.getParameter("lng");
         String parentPath = req.getParameter("parent");
-        markerService.removeMarker(latitude,longitude,parentPath);
-        resp.getWriter().write(serializer.seriaizeCollection(markerService.getAll(parentPath)));
+        eventDAO.removeEvent(latitude, longitude, parentPath);
+        resp.getWriter().write(serializer.seriaizeCollection(eventDAO.getAll(parentPath)));
     }
 }

@@ -63,11 +63,10 @@
                         <!-- Import any version of javax.inject, to allow running on multiple versions of AEM -->
                         <Import-Package>javax.inject;version=0.0.0,*</Import-Package>
                         <!--<Export-Package>ru.macsyom.services,ru.macsyom.models,com.aem.community.core.models,com.rometools.rome.*,com.rometools.*</Export-Package>-->
-                        <Export-Package>ru.macsyom.services,ru.macsyom.models,com.aem.community.core.models</Export-Package>
+                        <Export-Package>ru.macsyom.services,ru.macsyom.entity,com.aem.community.core.models</Export-Package>
                         <Private-Package>ru.macsyom.servlets,ru.macsyom.mapTask,ru.macsyom.parser</Private-Package>
                         <Sling-Model-Packages>
                             com.aem.community.core,
-                            ru.macsyom.models
                         </Sling-Model-Packages>
                     </instructions>
                 </configuration>

@@ -4,8 +4,8 @@ import org.apache.felix.scr.annotations.Component;
 import org.apache.felix.scr.annotations.Reference;
 import org.apache.felix.scr.annotations.Service;
 import org.apache.sling.jcr.api.SlingRepository;
-import ru.macsyom.models.Marker;
-import ru.macsyom.services.MarkerDAO;
+import ru.macsyom.entity.Event;
+import ru.macsyom.services.EventDAO;
 
 import javax.jcr.*;
 import javax.jcr.query.Query;
@@ -15,24 +15,25 @@ import java.util.*;
 
 @Component(immediate = true)
 @Service
-public class MarkerService implements MarkerDAO {
+public class EventDAOImpl implements EventDAO {
     @Reference
     private SlingRepository repository;
 
     @Override
-    public Marker addMarker(String lat, String len, String descr, String parentPath) {
-        Marker marker = null;
+    public Event addEvent(String lat, String lon, String descr, String text, String path) {
+        Event marker = null;
         try {
             Session session = repository.login(new SimpleCredentials("admin", "admin".toCharArray()), "crx.default");
-            Node parent = session.getNode(parentPath);
+            Node parent = session.getNode(path);
             String markerPath = "marker_" + generatePostfix();
             Node node = parent.addNode(markerPath);
             node.setPrimaryType("nt:unstructured");
             node.setProperty("latitude", lat);
-            node.setProperty("longitude", len);
+            node.setProperty("longitude", lon);
             node.setProperty("description", descr);
+            node.setProperty("text", text);
             marker = adaptNode(node);
-            marker.setPath(parentPath + "/" + markerPath);
+            marker.setPath(path + "/" + markerPath);
             session.save();
             session.logout();
         } catch (Exception e) {
@@ -42,15 +43,20 @@ public class MarkerService implements MarkerDAO {
     }
 
     @Override
-    public Marker editMarker(String lat, String lon, String descr, String path) {
-        Marker marker = null;
+    public Event dragEvent(String lat, String lon, String descr, String text, String path) {
+        Event marker = null;
         try {
             Session session = repository
                     .login(new SimpleCredentials("admin", "admin".toCharArray()), "crx.default");
             Node node = session.getNode(path);
-            node.setProperty("latitude", lat);
+            if (!descr.equals("")) {
+                node.setProperty("description", descr);
+            }
+            if (!text.equals("")) {
+                node.setProperty("text", text);
+            }
             node.setProperty("longitude", lon);
-            node.setProperty("description", descr);
+            node.setProperty("latitude", lat);
             marker = adaptNode(node);
             marker.setPath(path);
             session.save();
@@ -62,17 +68,18 @@ public class MarkerService implements MarkerDAO {
     }
 
     @Override
-    public Marker getMarker(String lat, String len, String parentPath) {
-        Set<Marker> markers = getAll(parentPath);
-        Optional<Marker> matchingObject = markers.stream()
-                .filter(x -> (x.getLatitude().equals(lat) && x.getLongitude().equals(len)))
+    public Event getEvent(String lat, String lon, String parentPath) {
+        Set<Event> markers = getAll(parentPath);
+        Optional<Event> matchingObject = markers.stream()
+                .filter(x -> (x.getLatitude().equals(lat) && x.getLongitude().equals(lon)))
                 .findFirst();
-        Marker marker = matchingObject.orElse(null);
+        Event marker = matchingObject.orElse(null);
+        System.out.println(marker);
         return marker;
     }
 
     @Override
-    public void removeMarker(String lat, String len, String parentPath) {
+    public void removeEvent(String lat, String lon, String parentPath) {
         try {
             Session session = repository.login(new SimpleCredentials("admin", "admin".toCharArray()), "crx.default");
             Node parent = session.getNode(parentPath);
@@ -81,9 +88,7 @@ public class MarkerService implements MarkerDAO {
                 Node currentNode = nodeIterator.nextNode();
                 String currentLat = currentNode.getProperty("latitude").getString();
                 String currentLen = currentNode.getProperty("longitude").getString();
-                System.out.println("lat = " + currentLat);
-                System.out.println("len=" + currentLen);
-                if ((currentLat.equals(lat)) && (currentLen.equals(len))) {
+                if ((currentLat.equals(lat)) && (currentLen.equals(lon))) {
                     currentNode.remove();
                 }
             }
@@ -95,8 +100,8 @@ public class MarkerService implements MarkerDAO {
     }
 
     @Override
-    public Set<Marker> getAll(String parentPath) {
-        Set<Marker> markers = new HashSet<>();
+    public Set<Event> getAll(String parentPath) {
+        Set<Event> markers = new HashSet<>();
         try {
             Session session = repository.login(new SimpleCredentials("admin", "admin".toCharArray()), "crx.default");
             QueryManager queryManager = session.getWorkspace().getQueryManager();
@@ -106,13 +111,8 @@ public class MarkerService implements MarkerDAO {
             NodeIterator nodeIterator = result.getNodes();
             while (nodeIterator.hasNext()) {
                 Node nextNode = nodeIterator.nextNode();
-                String lat = nextNode.getProperty("latitude").getString();
-                String len = nextNode.getProperty("longitude").getString();
-
-//                    String descr = x.getProperty("description").getString();
-                Marker marker = adaptNode(nextNode);
+                Event marker = adaptNode(nextNode);
                 marker.setPath(nextNode.getPath());
-//                    marker.setText(descr);
                 markers.add(marker);
             }
         } catch (RepositoryException e) {
@@ -121,38 +121,6 @@ public class MarkerService implements MarkerDAO {
         return markers;
     }
 
-//    @Override
-//    public Set<Marker> getAll(String parentPath) {
-//        Set<Marker> markers = new HashSet<>();
-//        try {
-//            Session session = repository.login(new SimpleCredentials("admin", "admin".toCharArray()), "crx.default");
-//            Node parent = session.getNode(parentPath);
-//            NodeIterator nodeIterator = parent.getNodes();
-//            Set<Node> children = new HashSet<>();
-//            while (nodeIterator.hasNext()) {
-//                children.add(nodeIterator.nextNode());
-//            }
-//            children.stream().forEach(x -> {
-//                try {
-//                    String lat = x.getProperty("latitude").getString();
-//                    String len = x.getProperty("longitude").getString();
-////                    String descr = x.getProperty("description").getString();
-//                    Marker marker = new Marker();
-//                    marker.setLatitude(lat);
-//                    marker.setLongitude(len);
-////                    marker.setText(descr);
-//                    markers.add(marker);
-//                } catch (RepositoryException e) {
-//                    e.printStackTrace();
-//                }
-//            });
-//            session.save();
-//            session.logout();
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//        return markers;
-//    }
 
     private String generatePostfix() {
         int leftLimit = 97; // letter 'a'
@@ -169,15 +137,13 @@ public class MarkerService implements MarkerDAO {
         return generatedString;
     }
 
-    //    SELECT * FROM [nt:unstructured] AS node
-//    WHERE ISDESCENDANTNODE(node, "/content/mappage/jcr:content")
-//    AND CONTAINS([latitude], "55.79123889811954") AND CONTAINS([longitude], "36.09705224999993")
-    private Marker adaptNode(Node node) throws RepositoryException {
-        Marker marker = new Marker();
-        marker.setLatitude(node.getProperty("latitude").getString());
-        marker.setLongitude(node.getProperty("longitude").getString());
-//        node.setProperty("description", descr)
-        return marker;
+    private Event adaptNode(Node node) throws RepositoryException {
+        Event event = new Event();
+        event.setLatitude(node.getProperty("latitude").getString());
+        event.setLongitude(node.getProperty("longitude").getString());
+        event.setDescription(node.getProperty("description").getString());
+        event.setText(node.getProperty("text").getString());
+        return event;
     }
 
 }

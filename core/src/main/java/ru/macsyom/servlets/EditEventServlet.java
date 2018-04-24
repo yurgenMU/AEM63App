@@ -6,16 +6,16 @@ import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.SlingHttpServletResponse;
 import org.apache.sling.api.servlets.SlingAllMethodsServlet;
 import ru.macsyom.services.JSONSerializer;
-import ru.macsyom.services.MarkerDAO;
+import ru.macsyom.services.EventDAO;
 
 import javax.servlet.ServletException;
 import java.io.IOException;
 
-@SlingServlet(paths = "/bin/editMarkerServlet", methods = "POST")
-public class EditMarketServlet extends SlingAllMethodsServlet{
+@SlingServlet(paths = "/bin/editEventServlet", methods = "POST")
+public class EditEventServlet extends SlingAllMethodsServlet{
 
     @Reference
-    private MarkerDAO markerService;
+    private EventDAO eventDAO;
 
     @Reference
     private JSONSerializer serializer;
@@ -24,9 +24,10 @@ public class EditMarketServlet extends SlingAllMethodsServlet{
         String latitude = req.getParameter("lat");
         String longitude = req.getParameter("lng");
         String description = req.getParameter("descr");
+        String text = req.getParameter("text");
         String path = req.getParameter("path");
         resp.getWriter()
-                .write(serializer.serializeMarker(markerService
-                        .editMarker(latitude,longitude,description,path)));
+                .write(serializer.serializeEvent(eventDAO
+                        .dragEvent(latitude,longitude,description,text,path)));
     }
 }

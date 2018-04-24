@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0"
           xmlns:jcr="http://www.jcp.org/jcr/1.0"
-          jcr:description="Google Maps API Template"
+          jcr:description="Google Maps API Main Page Template"
           jcr:primaryType="cq:Template"
-          jcr:title="MapTemplate"
+          jcr:title="MainTemplate"
           allowedPaths="[/content(/.*)?]"
           ranking="{Long}1">
     <jcr:content
             jcr:primaryType="cq:PageContent"
-            sling:resourceType="applicationMap/components/page/mapTemplate">
+            sling:resourceType="applicationMap/components/page/mainPageTemplate">
     </jcr:content>
 
 </jcr:root>

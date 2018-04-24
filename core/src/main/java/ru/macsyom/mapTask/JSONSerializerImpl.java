@@ -4,9 +4,8 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import org.apache.felix.scr.annotations.Component;
-import org.apache.felix.scr.annotations.Reference;
 import org.apache.felix.scr.annotations.Service;
-import ru.macsyom.models.Marker;
+import ru.macsyom.entity.Event;
 import ru.macsyom.services.JSONSerializer;
 
 import java.util.Set;
@@ -23,13 +22,13 @@ public class JSONSerializerImpl implements JSONSerializer {
 
 
     @Override
-    public String serializeMarker(Marker marker) throws JsonProcessingException {
+    public String serializeEvent(Event marker) throws JsonProcessingException {
         objectMapper.enable(SerializationFeature.INDENT_OUTPUT);
         return objectMapper.writeValueAsString(marker);
     }
 
     @Override
-    public String seriaizeCollection(Set<Marker> markers) throws JsonProcessingException {
+    public String seriaizeCollection(Set<Event> markers) throws JsonProcessingException {
         objectMapper.enable(SerializationFeature.INDENT_OUTPUT);
         return objectMapper.writeValueAsString(markers);
     }

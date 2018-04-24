@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:mix="http://www.jcp.org/jcr/mix/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+    jcr:language="ru"
+    jcr:mixinTypes="[mix:language]"
+    jcr:primaryType="nt:folder">
+    <copyright
+        jcr:mixinTypes="[sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:key="welcome"
+        sling:message="Добро пожаловать!"/>
+    <close
+            jcr:mixinTypes="[sling:Message]"
+            jcr:primaryType="nt:folder"
+            sling:key="close"
+            sling:message="Закрыть"/>
+    <save
+            jcr:mixinTypes="[sling:Message]"
+            jcr:primaryType="nt:folder"
+            sling:key="save"
+            sling:message="Сохранить"/>
+    <delete
+            jcr:mixinTypes="[sling:Message]"
+            jcr:primaryType="nt:folder"
+            sling:key="delete"
+            sling:message="Удалить"/>
+    <edit
+            jcr:mixinTypes="[sling:Message]"
+            jcr:primaryType="nt:folder"
+            sling:key="edit"
+            sling:message="Удалить"/>
+    <description
+            jcr:mixinTypes="[sling:Message]"
+            jcr:primaryType="nt:folder"
+            sling:key="description"
+            sling:message="Описание события"/>
+    <text
+            jcr:mixinTypes="[sling:Message]"
+            jcr:primaryType="nt:folder"
+            sling:key="text"
+            sling:message="Текст"/>
+    <parameters
+            jcr:mixinTypes="[sling:Message]"
+            jcr:primaryType="nt:folder"
+            sling:key="parameters"
+            sling:message="Параметры события"/>
+</jcr:root>
