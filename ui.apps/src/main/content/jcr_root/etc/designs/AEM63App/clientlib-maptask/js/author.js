@@ -14,6 +14,7 @@ function addMarker(flag, position, descr, text, map, parent) {
             var json = JSON.parse(str);
             var props = [json.description, json.text];
             marker = paintMarker(flag, position, props, map, json.path);
+            paintBlock(descr, text, json.path);
         }
 
     });
@@ -33,6 +34,17 @@ function editMarker(lat, lng, descr, text, map, id) {
         },
         success: function (str) {
             var json = JSON.parse(str);
+            var id = createId(json.path);
+            $('#' + 'heading_' + id).html("<div class=\"panel panel-default\">\n" +
+                "<div id=\"heading_" + id + "\" class=\"panel-heading\">\n" +
+                "<h3 class=\"panel-title\">\n" +
+                "<a data-toggle=\"collapse\" data-parent=\"#accordion\" href=\"#" + id + "\">\n<img src=\"/etc/designs/AEM63App/logo.jpg\">"
+
+             +" "+   json.description + "</a>\n" +
+                "</h3>\n" +
+                "</div>\n");
+            $('#' + id).html(json.text);
+
         }
     });
 
@@ -46,6 +58,7 @@ function deleteMarker(lat, lng, path) {
         type: "DELETE",
         url: "/bin/eventServlet?lat=" + lat + "&lng=" + lng + "&parent=" + path,
         success: function (str) {
+            deleteBlock(str);
         }
     });
 
@@ -66,17 +79,17 @@ function addClickListener(flag, map, parent) {
             var descr = $("#description").val();
             var text = $("#eventText").val();
             var marker = addMarker(flag, position, descr, text, map, parent);
-            document.getElementById('description').innerHTML="";
-            document.getElementById('eventText').innerHTML="";
+            document.getElementById('description').innerHTML = "";
+            document.getElementById('eventText').innerHTML = "";
         }
     });
 
 }
 
-function deleteButtonListener(path) {
-    var lat = $("#currentLatitude").text();
-    var lng = $("#currentLongitude").text();
-    deleteMarker(lat, lng, path);
+function deleteBlock(str) {
+    var id = createId(str);
+    $('#' + 'heading_' + id).remove();
+    $('#' + id).remove();
 
 
 }
@@ -117,8 +130,8 @@ function paintAuthorMarker(position, props, map, id) {
             marker.setValues({text: text});
             infowindow.setContent(marker.get("description"));
             editMarker(lat, lng, descr, text, map, marker.get("id"));
-            document.getElementById('description').innerHTML="";
-            document.getElementById('eventText').innerHTML="";
+            document.getElementById('description').innerHTML = "";
+            document.getElementById('eventText').innerHTML = "";
 
         }
     });
@@ -128,8 +141,8 @@ function paintAuthorMarker(position, props, map, id) {
         var text = null;
         var descr = null;
         editMarker(lat, lng, descr, text, map, marker.get("id"));
-        document.getElementById('description').innerHTML="";
-        document.getElementById('eventText').innerHTML="";
+        document.getElementById('description').innerHTML = "";
+        document.getElementById('eventText').innerHTML = "";
     });
     google.maps.event.addListener(marker, 'mouseover', function () {
         infowindow.setContent(marker.get("description"));
@@ -141,3 +154,4 @@ function paintAuthorMarker(position, props, map, id) {
 
     return marker;
 }
+

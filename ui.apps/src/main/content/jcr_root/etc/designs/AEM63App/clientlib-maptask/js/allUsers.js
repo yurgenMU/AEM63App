@@ -18,13 +18,13 @@ function getAllMarkers(flag, map, path) {
         success: function (str) {
             var json = JSON.parse(str);
             for (var i in json) {
-                var position = {lat: parseFloat(json[i].latitude), lng: parseFloat(json[i].longitude)};
-                var props = [json[i].description, json[i].text];
-                paintMarker(flag, position, props, map, json[i].path);
-
+                if (!(typeof json[i] === "function")) {
+                    var position = {lat: parseFloat(json[i].latitude), lng: parseFloat(json[i].longitude)};
+                    var props = [json[i].description, json[i].text];
+                    paintMarker(flag, position, props, map, json[i].path);
+                    paintBlock(json[i].description, json[i].text, json[i].path);
+                }
             }
-
-
         }
     });
 }
@@ -32,14 +32,12 @@ function getAllMarkers(flag, map, path) {
 function paintMarker(flag, position, props, map, id) {
     var marker;
     if (flag == true) {
-        marker = paintAuthorMarker(position, props,map, id);
+        marker = paintAuthorMarker(position, props, map, id);
     } else {
         marker = paintUserMarker(position, props, map, id);
     }
     return marker;
 }
-
-
 
 
 function paintUserMarker(position, props, map, id) {
@@ -64,4 +62,26 @@ function paintUserMarker(position, props, map, id) {
     });
 
     return marker;
+}
+
+function createId(param) {
+    var splitParam = param.split(/[\s/]+/);
+    var postf = splitParam[splitParam.length - 1];
+    return postf;
+}
+
+
+function paintBlock(description, text, path) {
+    var id = createId(path);
+    $('#accordion').append("<div class=\"panel panel-default\">\n" +
+        "<div id=\"heading_" + id + "\" class=\"panel-heading\">\n" +
+        "<h3 class=\"panel-title\">\n" +
+        " <a data-toggle=\"collapse\" data-parent=\"#accordion\" href=\"#" + id + "\">\n<img src=\"/etc/designs/AEM63App/logo.jpg\">"
+    + " " +    description + "</a>\n" +
+        "</h3>\n" +
+        "</div>\n" +
+        "<div id=\"" + id + "\" class=\"panel-collapse collapse in\">\n" +
+        "<div class=\"panel-body\">" + text + "</div>\n" +
+        "</div>\n" +
+        "</div>");
 }

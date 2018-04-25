@@ -1,6 +1,6 @@
 <%@include file="/apps/applicationMap/globalLib/global.jsp" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<cq:includeClientLib categories="myLibs"/>
+<cq:includeClientLib categories="mapTaskLibs"/>
 <html>
 <head>
     <h1>Choose your language</h1>

@@ -79,7 +79,8 @@ public class EventDAOImpl implements EventDAO {
     }
 
     @Override
-    public void removeEvent(String lat, String lon, String parentPath) {
+    public String removeEvent(String lat, String lon, String parentPath) {
+        String path = null;
         try {
             Session session = repository.login(new SimpleCredentials("admin", "admin".toCharArray()), "crx.default");
             Node parent = session.getNode(parentPath);
@@ -88,6 +89,7 @@ public class EventDAOImpl implements EventDAO {
                 Node currentNode = nodeIterator.nextNode();
                 String currentLat = currentNode.getProperty("latitude").getString();
                 String currentLen = currentNode.getProperty("longitude").getString();
+                path = currentNode.getPath();
                 if ((currentLat.equals(lat)) && (currentLen.equals(lon))) {
                     currentNode.remove();
                 }
@@ -97,6 +99,8 @@ public class EventDAOImpl implements EventDAO {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        System.out.println(path);
+        return path;
     }
 
     @Override

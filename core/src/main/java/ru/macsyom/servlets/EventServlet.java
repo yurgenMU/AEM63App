@@ -36,7 +36,6 @@ public class EventServlet extends SlingAllMethodsServlet {
         String latitude = req.getParameter("lat");
         String longitude = req.getParameter("lng");
         String parentPath = req.getParameter("parent");
-        eventDAO.removeEvent(latitude, longitude, parentPath);
-        resp.getWriter().write(serializer.seriaizeCollection(eventDAO.getAll(parentPath)));
+        resp.getWriter().write(eventDAO.removeEvent(latitude,longitude, parentPath));
     }
 }
