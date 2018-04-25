@@ -43,7 +43,7 @@ public class EventDAOImpl implements EventDAO {
     }
 
     @Override
-    public Event dragEvent(String lat, String lon, String descr, String text, String path) {
+    public Event editEvent(String lat, String lon, String descr, String text, String path) {
         Event marker = null;
         try {
             Session session = repository

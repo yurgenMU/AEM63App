@@ -28,6 +28,6 @@ public class EditEventServlet extends SlingAllMethodsServlet{
         String path = req.getParameter("path");
         resp.getWriter()
                 .write(serializer.serializeEvent(eventDAO
-                        .dragEvent(latitude,longitude,description,text,path)));
+                        .editEvent(latitude,longitude,description,text,path)));
     }
 }

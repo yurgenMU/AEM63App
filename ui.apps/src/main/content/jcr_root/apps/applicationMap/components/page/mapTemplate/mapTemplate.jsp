@@ -13,13 +13,13 @@
 <head>
     <style>
         /*body {*/
-            /*background: #29AB87;*/
-            /*background-image: url("");*/
+        /*background: #29AB87;*/
+        /*background-image: url("");*/
         /*}*/
         #map {
             /*margin-left:auto; margin-right:0;*/
             height: 500px;
-            width: 100%;
+            width: 80%;
             margin: 50px;
         }
 
@@ -30,13 +30,27 @@
         #welcome {
             padding: 50px;
         }
+
+        #accordion_search_bar {
+            background-image: url('/etc/designs/AEM63App/search.png');
+            background-position: 10px 12px;
+            background-repeat: no-repeat;
+            width: 80%;
+            font-size: 16px;
+            padding: 12px 20px 12px 40px;
+            border: 1px solid #ddd;
+            margin-bottom: 12px;
+            margin-left: 50px;
+        }
+
     </style>
 </head>
 <body>
 
 
 <div id="welcome">
-    <h1><%= i18n.get("welcome") %></h1>
+    <h1><%= i18n.get("welcome") %>
+    </h1>
 </div>
 
 <div id="map"></div>
@@ -81,9 +95,14 @@
                 </div>
 
                 <div class="modal-footer">
-                    <button class="btn" data-dismiss="modal" aria-hidden="true"><%= i18n.get("close") %></button>
-                    <button class="btn btn-primary" data-dismiss="modal" type="submit" id="saveButton"><%= i18n.get("save") %></button>
-                    <button class="btn btn-danger" data-dismiss="modal" type="submit" id="deleteButton"><%= i18n.get("delete") %></button>
+                    <button class="btn" data-dismiss="modal" aria-hidden="true"><%= i18n.get("close") %>
+                    </button>
+                    <button class="btn btn-primary" data-dismiss="modal" type="submit"
+                            id="saveButton"><%= i18n.get("save") %>
+                    </button>
+                    <button class="btn btn-danger" data-dismiss="modal" type="submit"
+                            id="deleteButton"><%= i18n.get("delete") %>
+                    </button>
                 </div>
 
             </div>
@@ -91,13 +110,47 @@
         </div>
     </div>
 </div>
-
+<input type="search" id="accordion_search_bar" class="form-control" placeholder="" onkeyup="myFunction()">
 <div class="panel-group" id="accordion">
 </div>
+
+
+
+<script>
+    $('.collapse').not(':first').collapse();
+    function myFunction () {
+        var input, filter, ul, li, a, i;
+        input = document.getElementById("accordion_search_bar");
+        filter = input.value.toUpperCase();
+        var name = document.getElementsByClassName("panel panel-title");
+        console.log($(".panel").html());
+        for (i = 0; i < name.length; i++) {
+            a = name[i].getElementsByTagName("a")[0];
+            if (a.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                name[i].style.display = "";
+            } else {
+                name[i].style.display = "none";
+
+            }
+        }
+    }
+     // Collapse all but the first row on the page.
+
+    // This section makes the search work.
+
+</script>
+
+<script>
+    funtion(){
+
+    }
+</script>
 
 </body>
 <footer class="container-fluid text-center">
     <p>Footer Text</p>
 </footer>
+
+
 
 </html>

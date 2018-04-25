@@ -74,14 +74,14 @@ function createId(param) {
 function paintBlock(description, text, path) {
     var id = createId(path);
     $('#accordion').append("<div class=\"panel panel-default\">\n" +
-        "<div id=\"heading_" + id + "\" class=\"panel-heading\">\n" +
-        "<h3 class=\"panel-title\">\n" +
+        "<div id=\"heading_" + id + "\" class=\"panel panel-heading\">\n" +
+        "<h3 id=\"title"+id+"\" class=\"panel panel-title\">\n" +
         " <a data-toggle=\"collapse\" data-parent=\"#accordion\" href=\"#" + id + "\">\n<img src=\"/etc/designs/AEM63App/logo.jpg\">"
     + " " +    description + "</a>\n" +
-        "</h3>\n" +
-        "</div>\n" +
+        "</h3>" +
+        "</div>" +
         "<div id=\"" + id + "\" class=\"panel-collapse collapse in\">\n" +
-        "<div class=\"panel-body\">" + text + "</div>\n" +
+        "<div class=\"panel panel-body\">" + text + "</div>\n" +
         "</div>\n" +
         "</div>");
 }
