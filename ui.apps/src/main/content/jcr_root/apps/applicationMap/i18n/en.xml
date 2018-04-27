@@ -8,4 +8,64 @@
         jcr:primaryType="nt:folder"
         sling:key="welcome"
         sling:message="Welcome!"/>
+    <title
+            jcr:mixinTypes="[sling:Message]"
+            jcr:primaryType="nt:folder"
+            sling:key="titleMap"
+            sling:message="St. Petersburg"/>
+    <pageInfo
+            jcr:mixinTypes="[sling:Message]"
+            jcr:primaryType="nt:folder"
+            sling:key="pageDescription"
+            sling:message="This page is made for giving a brief excursion into the history and geography of St. Petersburg. Many guests of the city (yes, it's a sin to hide, sometimes the residents themselves) do not fully understand where this or that attraction is and what it is. On this page you can find on the map and quickly get acquainted with the main sights of the city"/>
+    <close
+            jcr:mixinTypes="[sling:Message]"
+            jcr:primaryType="nt:folder"
+            sling:key="close"
+            sling:message="Close"/>
+    <save
+            jcr:mixinTypes="[sling:Message]"
+            jcr:primaryType="nt:folder"
+            sling:key="save"
+            sling:message="Save"/>
+    <delete
+            jcr:mixinTypes="[sling:Message]"
+            jcr:primaryType="nt:folder"
+            sling:key="delete"
+            sling:message="Delete"/>
+    <edit
+            jcr:mixinTypes="[sling:Message]"
+            jcr:primaryType="nt:folder"
+            sling:key="edit"
+            sling:message="Edit"/>
+    <name
+            jcr:mixinTypes="[sling:Message]"
+            jcr:primaryType="nt:folder"
+            sling:key="name"
+            sling:message="Event name"/>
+    <description
+            jcr:mixinTypes="[sling:Message]"
+            jcr:primaryType="nt:folder"
+            sling:key="description"
+            sling:message="Text"/>
+    <parameters
+            jcr:mixinTypes="[sling:Message]"
+            jcr:primaryType="nt:folder"
+            sling:key="parameters"
+            sling:message="Event parameters"/>
+    <footer
+            jcr:mixinTypes="[sling:Message]"
+            jcr:primaryType="nt:folder"
+            sling:key="footerText"
+            sling:message="St. Petersburg 2018"/>
+    <message0
+            jcr:mixinTypes="[sling:Message]"
+            jcr:primaryType="nt:folder"
+            sling:key="message0"
+            sling:message="You didn't enter event name"/>
+    <message1
+            jcr:mixinTypes="[sling:Message]"
+            jcr:primaryType="nt:folder"
+            sling:key="message1"
+            sling:message="You didn't enter event description"/>
 </jcr:root>

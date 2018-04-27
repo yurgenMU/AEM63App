@@ -4,10 +4,10 @@
     title="Properties"
     xtype="panel">
     <items jcr:primaryType="cq:WidgetCollection">
-        <text
+        <description
             jcr:primaryType="cq:Widget"
             fieldLabel="Text"
-            name="./text"
+            name="./description"
             xtype="textfield"/>
     </items>
 </jcr:root>

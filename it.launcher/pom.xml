@@ -30,7 +30,7 @@
     <artifactId>AEM63App.it.launcher</artifactId>
     <packaging>jar</packaging>
     <name>AEM63App - Integration Tests Launcher</name>
-    <description>Integration Tests Launcher for AEM63App</description>
+    <!--<name>Integration Tests Launcher for AEM63App</name>-->
 
     <!-- <scm>
         <connection></connection>

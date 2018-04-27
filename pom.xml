@@ -20,7 +20,7 @@
     <artifactId>AEM63App</artifactId>
     <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
-    <description>AEM63App</description>
+    <name>AEM63App</name>
 
     <modules>
         <module>core</module>

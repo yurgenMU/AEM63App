@@ -33,7 +33,7 @@
     <artifactId>AEM63App.ui.content</artifactId>
     <packaging>content-package</packaging>
     <name>AEM63App - UI content</name>
-    <description>UI content package for AEM63App</description>
+    <!--<name>UI content package for AEM63App</name>-->
 
     <!-- <scm>
         <connection></connection>

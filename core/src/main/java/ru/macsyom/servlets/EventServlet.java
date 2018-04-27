@@ -5,17 +5,21 @@ import org.apache.felix.scr.annotations.sling.SlingServlet;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.SlingHttpServletResponse;
 import org.apache.sling.api.servlets.SlingAllMethodsServlet;
+import ru.macsyom.entity.Event;
+import ru.macsyom.services.EventService;
 import ru.macsyom.services.JSONSerializer;
-import ru.macsyom.services.EventDAO;
 
 import javax.servlet.ServletException;
 import java.io.IOException;
 
+/**
+ * Servlet processing requests for creation and deletion events
+ */
 @SlingServlet(paths = "/bin/eventServlet", methods = {"POST", "DELETE"})
 public class EventServlet extends SlingAllMethodsServlet {
 
     @Reference
-    private EventDAO eventDAO;
+    private EventService eventService;
 
     @Reference
     private JSONSerializer serializer;
@@ -23,19 +27,22 @@ public class EventServlet extends SlingAllMethodsServlet {
     public void doPost(SlingHttpServletRequest req, SlingHttpServletResponse resp) throws ServletException, IOException {
         String latitude = req.getParameter("lat");
         String longitude = req.getParameter("lng");
-        String description = req.getParameter("descr");
-        String text = req.getParameter("text");
+        String name = req.getParameter("name");
+        String description = req.getParameter("description");
         String parentPath = req.getParameter("parent");
-        resp.getWriter()
-                .write(serializer.serializeEvent(eventDAO
-                        .addEvent(latitude, longitude, description, text, parentPath)));
+        Event event = eventService
+                .addEvent(latitude, longitude, name, description, parentPath);
+        if(event == null){
+            resp.getWriter().write("Value of request parameter is null");
+        } else{
+            resp.getWriter()
+                    .write(serializer.serializeEvent(event));
+        }
     }
 
 
     public void doDelete(SlingHttpServletRequest req, SlingHttpServletResponse resp) throws ServletException, IOException {
-        String latitude = req.getParameter("lat");
-        String longitude = req.getParameter("lng");
-        String parentPath = req.getParameter("parent");
-        resp.getWriter().write(eventDAO.removeEvent(latitude,longitude, parentPath));
+        String path = req.getParameter("path");
+        resp.getWriter().write(eventService.removeEvent(path));
     }
 }

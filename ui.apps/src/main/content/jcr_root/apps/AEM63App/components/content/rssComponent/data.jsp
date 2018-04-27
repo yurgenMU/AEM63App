@@ -14,7 +14,7 @@
                 var json = JSON.parse(str);
                 for (var i in json) {
                     var title = json[i].title;
-                    var descr = json[i].description;
+                    var descr = json[i].name;
                     var link = json[i].link;
                     var author = json[i].author;
                     var guid = json[i].guid;
@@ -26,7 +26,7 @@
                         "<div id=\"demo" + postf + i + "\" class=\"collapse\">" + descr +
                         "  </div>");
                     $("#" + postf + i).click(function(){
-                        $(this).text(function(i,old){
+                        $(this).name(function(i, old){
                             return old==='+' ?  '-' : '+';
                         });
                     });

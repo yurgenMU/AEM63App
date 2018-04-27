@@ -8,6 +8,16 @@
         jcr:primaryType="nt:folder"
         sling:key="welcome"
         sling:message="Добро пожаловать!"/>
+    <title
+            jcr:mixinTypes="[sling:Message]"
+            jcr:primaryType="nt:folder"
+            sling:key="titleMap"
+            sling:message="Гид по Санкт-Петербургу"/>
+    <pageInfo
+            jcr:mixinTypes="[sling:Message]"
+            jcr:primaryType="nt:folder"
+            sling:key="pageDescription"
+            sling:message="Эта страница сделана для предоставления краткого экскурса в историю и географию Санкт-Петербурга. Многие гости города (да что греха таить, порой и сами жители) не до конца представляют, где находится та или иная известная постройка и что она из себя представляет. Здесь вы можете найти на карте и бегло ознакомиться с основными достопримечательностями города"/>
     <close
             jcr:mixinTypes="[sling:Message]"
             jcr:primaryType="nt:folder"
@@ -27,20 +37,35 @@
             jcr:mixinTypes="[sling:Message]"
             jcr:primaryType="nt:folder"
             sling:key="edit"
-            sling:message="Удалить"/>
+            sling:message="Изменить"/>
+    <name
+            jcr:mixinTypes="[sling:Message]"
+            jcr:primaryType="nt:folder"
+            sling:key="name"
+            sling:message="Описание события"/>
     <description
             jcr:mixinTypes="[sling:Message]"
             jcr:primaryType="nt:folder"
             sling:key="description"
-            sling:message="Описание события"/>
-    <text
-            jcr:mixinTypes="[sling:Message]"
-            jcr:primaryType="nt:folder"
-            sling:key="text"
             sling:message="Текст"/>
     <parameters
             jcr:mixinTypes="[sling:Message]"
             jcr:primaryType="nt:folder"
             sling:key="parameters"
             sling:message="Параметры события"/>
+    <footer
+            jcr:mixinTypes="[sling:Message]"
+            jcr:primaryType="nt:folder"
+            sling:key="footerText"
+            sling:message="Санкт-Петербург 2018 г."/>
+    <message0
+            jcr:mixinTypes="[sling:Message]"
+            jcr:primaryType="nt:folder"
+            sling:key="message0"
+            sling:message="Вы не ввели название"/>
+    <message1
+            jcr:mixinTypes="[sling:Message]"
+            jcr:primaryType="nt:folder"
+            sling:key="message1"
+            sling:message="Вы не ввели описание"/>
 </jcr:root>

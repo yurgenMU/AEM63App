@@ -8,9 +8,9 @@ public class Event {
 
     private String longitude;
 
-    private String text;
-
     private String description;
+
+    private String name;
 
     private String path;
 
@@ -32,20 +32,20 @@ public class Event {
         this.longitude = longitude;
     }
 
-    public String getText() {
-        return text;
-    }
-
-    public void setText(String text) {
-        this.text = text;
-    }
-
     public String getDescription() {
         return description;
     }
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
 
@@ -64,15 +64,23 @@ public class Event {
         Event marker = (Event) o;
         return Objects.equals(latitude, marker.latitude) &&
                 Objects.equals(longitude, marker.longitude) &&
-                Objects.equals(text, marker.text);
+                Objects.equals(description, marker.description);
     }
 
     @Override
     public int hashCode() {
-
-        return Objects.hash(latitude, longitude, text);
+        return Objects.hash(latitude, longitude, description);
     }
 
 
-
+    @Override
+    public String toString() {
+        return "Event{" +
+                "latitude='" + latitude + '\'' +
+                ", longitude='" + longitude + '\'' +
+                ", description='" + description + '\'' +
+                ", name='" + name + '\'' +
+                ", path='" + path + '\'' +
+                '}';
+    }
 }

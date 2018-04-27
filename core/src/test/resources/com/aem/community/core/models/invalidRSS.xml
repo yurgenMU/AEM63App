@@ -4,8 +4,8 @@
      media="http://search.yahoo.com/mrss/">
     <channel>
         <title>Space Station News</title>
-        <description>A RSS news feed containing the latest NASA press releases on the International Space Station.
-        </description>
+        <name>A RSS news feed containing the latest NASA press releases on the International Space Station.
+        </name>
         <link>http: //www.nasa.gov/</link>
         <atom: link rel="self" href="http://www.nasa.gov/rss/dyn/shuttle_station.rss"/>
         <language>en-us</language>
@@ -17,9 +17,9 @@
             <link>http:
                 //www.nasa.gov/press-release/maryland-michigan-texas-students-to-link-up-with-nasa-astronauts-on-space-station
             </link>
-            <description>Students from Maryland, Michigan and Texas will talk with astronauts on the International Space
+            <name>Students from Maryland, Michigan and Texas will talk with astronauts on the International Space
                 Station this week as part of NASA’s Year of Education on Station.
-            </description>
+            </name>
             <enclosure
                     url="http://www.nasa.gov/sites/default/files/styles/1x1_cardfeed/public/thumbnails/image/m18-060.jpg?itok=7U0-ommr"
                     length="3371958" type="image/jpeg"/>
@@ -33,10 +33,10 @@
             <title>Frostburg State Students to Speak with NASA Astronaut in Space</title>
             <link>http: //www.nasa.gov/press-release/frostburg-state-students-to-speak-with-nasa-astronaut-in-space
             </link>
-            <description>Frostburg State University, in collaboration with its sister institutions in Frostburg,
+            <name>Frostburg State University, in collaboration with its sister institutions in Frostburg,
                 Maryland, will speak with NASA astronaut Ricky Arnold who is living, working and doing research aboard
                 the International Space Station at 9: 55 a.m. EDT Monday, April 9.
-            </description>
+            </name>
             <enclosure
                     url="http://www.nasa.gov/sites/default/files/styles/1x1_cardfeed/public/thumbnails/image/m18-056.jpg?itok=OdHH8SQt"
                     length="4601085" type="image/jpeg"/>
@@ -51,10 +51,10 @@
             <link>http:
                 //www.nasa.gov/press-release/new-research-heading-to-space-station-aboard-14th-spacex-resupply-mission
             </link>
-            <description>Astronauts aboard the International Space Station soon will receive a delivery of experiments
+            <name>Astronauts aboard the International Space Station soon will receive a delivery of experiments
                 dealing with how the human body, plants and materials behave in space following the 4: 30 p.m. EDT
                 launch Monday of a SpaceX commercial resupply mission.
-            </description>
+            </name>
             <enclosure
                     url="http://www.nasa.gov/sites/default/files/styles/1x1_cardfeed/public/thumbnails/image/spacex_crs-14_launch_co.jpg?itok=rppahbSb"
                     length="2006921" type="image/jpeg"/>
@@ -69,9 +69,9 @@
             <link>http:
                 //www.nasa.gov/press-release/nasa-television-to-air-launch-of-next-space-station-resupply-mission-3
             </link>
-            <description>NASA commercial cargo provider SpaceX now is targeting its 14th resupply mission to the
+            <name>NASA commercial cargo provider SpaceX now is targeting its 14th resupply mission to the
                 International Space Station for no earlier than 4: 30 p.m. EDT Monday, April 2.
-            </description>
+            </name>
             <enclosure
                     url="http://www.nasa.gov/sites/default/files/styles/1x1_cardfeed/public/thumbnails/image/m18-053.jpg?itok=VuGSRSBe"
                     length="751840" type="image/jpeg"/>
@@ -86,10 +86,10 @@
             <link>http:
                 //www.nasa.gov/press-release/two-nasa-astronauts-among-crew-heading-to-international-space-station
             </link>
-            <description>Three crew members, including NASA astronauts Drew Feustel and Ricky Arnold, are on their way
+            <name>Three crew members, including NASA astronauts Drew Feustel and Ricky Arnold, are on their way
                 to the International Space Station after launching from the Baikonur Cosmodrome in Kazakhstan at 1: 44
                 p.m. EDT Wednesday (11: 44 p.m. Baikonur time).
-            </description>
+            </name>
             <enclosure
                     url="http://www.nasa.gov/sites/default/files/styles/1x1_cardfeed/public/thumbnails/image/nhq201803210006.jpg?itok=g6sVyuTu"
                     length="1311171" type="image/jpeg"/>
@@ -102,10 +102,10 @@
         <item>
             <title>NASA to Preview Upcoming US Spacewalk, Provide Live Coverage</title>
             <link>http: //www.nasa.gov/press-release/nasa-to-preview-upcoming-us-spacewalk-provide-live-coverage</link>
-            <description>Two American astronauts will venture outside the International Space Station on Thursday, March
+            <name>Two American astronauts will venture outside the International Space Station on Thursday, March
                 29, for a planned 6.5-hour spacewalk. Experts from NASA will preview this work in a briefing at 2 p.m.
                 EDT Tuesday, March 27, at NASA’s Johnson Space Center in Houston.
-            </description>
+            </name>
             <enclosure
                     url="http://www.nasa.gov/sites/default/files/styles/1x1_cardfeed/public/thumbnails/image/23909425288_8b01419b3d_k.jpg?itok=99vuwOi0"
                     length="883336" type="image/jpeg"/>
@@ -120,10 +120,10 @@
             <link>http:
                 //www.nasa.gov/press-release/nasa-to-highlight-science-launching-on-next-resupply-mission-to-space-station
             </link>
-            <description>NASA will host a media teleconference at 11 a.m. EDT Monday, March 19, to discuss a number of
+            <name>NASA will host a media teleconference at 11 a.m. EDT Monday, March 19, to discuss a number of
                 science investigations and instruments launching in April to the International Space Station on the next
                 SpaceX commercial resupply mission. Audio of the teleconference will stream live on NASA’s website.
-            </description>
+            </name>
             <enclosure
                     url="http://www.nasa.gov/sites/default/files/styles/1x1_cardfeed/public/thumbnails/image/the-marrow-experiment.jpg?itok=jpRtlow8"
                     length="1973341" type="image/jpeg"/>
@@ -137,9 +137,9 @@
             <title>NASA Television Coverage Set for Space Station Crew Launch, Docking</title>
             <link>http://www.nasa.gov/press-release/nasa-television-coverage-set-for-space-station-crew-launch-docking
             </link>
-            <description>Two American astronauts and a Russian cosmonaut are ready for their journey to the
+            <name>Two American astronauts and a Russian cosmonaut are ready for their journey to the
                 International Space Station that begins on Wednesday, March 21.
-            </description>
+            </name>
             <enclosure
                     url="http://www.nasa.gov/sites/default/files/styles/1x1_cardfeed/public/thumbnails/image/m18-044.jpg?itok=BNVFNDgv"
                     length="833765" type="image/jpeg"/>
@@ -154,10 +154,10 @@
             <link>http:
                 //www.nasa.gov/press-release/science-teachers-at-national-conference-to-speak-with-nasa-astronaut-on-space-station
             </link>
-            <description>The National Science Teachers Association (NSTA) Conference in Atlanta will speak with NASA
+            <name>The National Science Teachers Association (NSTA) Conference in Atlanta will speak with NASA
                 astronaut Scott Tingle, currently living and working aboard the International Space Station, at 10: 40
                 a.m. EDT Friday, March 16.
-            </description>
+            </name>
             <enclosure
                     url="http://www.nasa.gov/sites/default/files/styles/1x1_cardfeed/public/thumbnails/image/iss054e002532.jpg?itok=TZrSRE1j"
                     length="2447087" type="image/jpeg"/>
@@ -173,11 +173,11 @@
             <link>http:
                 //www.nasa.gov/press-release/massachusetts-students-to-speak-with-nasa-astronaut-on-space-station
             </link>
-            <description>Students from the University of Massachusetts Dartmouth (UMass Dartmouth, ) will speak with
+            <name>Students from the University of Massachusetts Dartmouth (UMass Dartmouth, ) will speak with
                 NASA astronaut and alumnus Scott Tingle, who is living and working aboard the International Space
                 Station, at 12: 30 p.m. EST Tuesday, March 6. The 20 minute, Earth-to-space call will air live on NASA
                 Television and the agency’s website.
-            </description>
+            </name>
             <enclosure
                     url="http://www.nasa.gov/sites/default/files/styles/1x1_cardfeed/public/thumbnails/image/tingle.png?itok=cmO_QRJi"
                     length="4659921" type="image/png"/>

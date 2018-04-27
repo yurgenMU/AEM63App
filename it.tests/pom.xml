@@ -33,7 +33,7 @@
     <artifactId>AEM63App.it.tests</artifactId>
     <packaging>bundle</packaging>
     <name>AEM63App - Integration Tests Bundles</name>
-    <description>Bundles for Integration Tests for AEM63App</description>
+    <!--<name>Bundles for Integration Tests for AEM63App</name>-->
 
     <!-- <scm>
         <connection></connection>

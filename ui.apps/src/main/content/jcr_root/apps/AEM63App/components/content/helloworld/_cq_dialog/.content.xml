@@ -14,11 +14,11 @@
                 jcr:primaryType="nt:unstructured"
                 sling:resourceType="granite/ui/components/foundation/container">
                 <items jcr:primaryType="nt:unstructured">
-                    <text
+                    <description
                         jcr:primaryType="nt:unstructured"
                         sling:resourceType="granite/ui/components/foundation/form/textfield"
                         fieldLabel="Text"
-                        name="./text"/>
+                        name="./description"/>
                 </items>
             </column>
         </items>
